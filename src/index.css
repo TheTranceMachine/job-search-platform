@@ -1,68 +1,153 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
 
 body {
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
   margin: 0;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header,
+nav,
+main,
+aside,
+footer {
+  padding: 12px;
+}
+
+.container {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: row;
+  height:100%;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.container > * {
+  min-height: calc(100vh - 100px);
+  margin-bottom: 100px;
 }
 
-button {
+header {
+  background-color: tomato;
+  height: 60px;
+}
+nav, aside {
+  width: 100px;
+}
+nav {
+  background-color: coral;
+}
+
+main {
+  background-color: moccasin;
+  flex: 1;
+}
+
+aside {
+  background-color: sandybrown;
+}
+
+footer {
+  background-color: slategray;
+  height: 100px;
+  position: fixed;
+  bottom:0;
+  width:100%;
+}
+
+
+.matrix {
+  border: solid 1px black;
+  padding: 10px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+span.circle__full {
+  background: black;
+  color: black;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  margin-right: 2px;
+}
+span.circle__empty {
+  background: white;
+  color: white;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+/* Tabs */
+.tab {
+  background-color: white;
+}
+
+.active {
+  background-color: blue;
+  color: white;
+}
+
+/* Traffic Light */
+.traffic-light-container {
+  background-color: #000;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  display: flex;
+  padding: 8px;
+  gap: 8px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.traffic-light-container--vertical {
+  flex-direction: column;
+}
+
+.traffic-light {
+  --size: 50px;
+  background-color: #555;
+  border-radius: var(--size);
+  height: var(--size);
+  width: var(--size);
+}
+
+/* Digital Clock */
+.clock {
+  padding: 2rem;
+  width: fit-content;
+  background-color: black;
+  color: white;
+  font-size: 55px;
+  border-radius: 10px;
+  border: 10px solid gray;
+  font-family: 'Nova Square', sans-serif;
+}
+
+/* Job Board */
+.main_title {
+  color: darkgoldenrod;
+}
+
+.post {
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid gray;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+}
+
+.loadMoreButton {
+  padding: 0.5rem;
+  background-color: darkorange;
+  color: white;
+  border: 1px solid rgb(195, 107, 0);
+  border-radius: 5px;
+  cursor: pointer;
 }
