@@ -23,10 +23,10 @@ function JobBoard() {
     const date = d.toLocaleDateString();
     const time = d.toTimeString().split(' ')[0];
     return `${date}, ${time}`;
-  }
+  };
 
   // Create a function to display a paginated list of items
-  function paginate(items, pageNumber) {
+  async function paginate(items, pageNumber) {
     // Start at the beginning of the current page
     const startIndex = (pageNumber - 1) * pageSize;
     // End at the end of the current page
@@ -35,11 +35,18 @@ function JobBoard() {
     // Display the items for the current page
     const paginatedItems = items.slice(startIndex, endIndex);
 
-    const newItems = jobPostsPaginated.concat(paginatedItems);
+    // Get details for the paginated IDs
+    let jobDetailsResults = [];
+    for (const id of paginatedItems) {
+      const details = await jobDetails(id);
+      jobDetailsResults.push(details);
+    }
+    // Add to the current list of paginated pages
+    const newItems = jobPostsPaginated.concat(jobDetailsResults);
 
     // Return the paginated items
     setJobPostsPaginated(newItems);
-  }
+  };
 
   const handleOnClick = () => {
     setPage((prev) => prev + 1);
@@ -52,14 +59,8 @@ function JobBoard() {
         'https://hacker-news.firebaseio.com/v0/jobstories.json'
       );
       const postings = await response.json();
-
-      let jobDetailsResults = [];
-      for (const id of postings) {
-        const details = await jobDetails(id);
-        jobDetailsResults.push(details);
-      }
-      setJobPosts(jobDetailsResults);
-    }
+      setJobPosts(postings);
+    };
     if (!jobPosts.length) fetchData();
   }, [jobPosts]);
 
@@ -69,7 +70,6 @@ function JobBoard() {
     }
   }, [jobPosts, jobPostsPaginated]);
 
-  console.log(page);
   return (
     <div>
       <h1 className="main_title">Hacker News Jobs Board</h1>

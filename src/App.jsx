@@ -1,8 +1,8 @@
 function App() {
   return (
-    <h1>
-      Testing
-    </h1>
+    <div className="text-2xl center">
+      Testing Page
+    </div>
   )
 }
 
