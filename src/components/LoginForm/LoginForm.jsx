@@ -1,7 +1,11 @@
 import { useRef, useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { authenticateUser } from '../../reducers/userSlice';
 
 function RegistrationForm() {
+    const dispatch = useDispatch();
+
     const [error, setError] = useState('');
     const emailRef = useRef('');
     const passwordRef = useRef('');
@@ -18,8 +22,11 @@ function RegistrationForm() {
         const passwordInput = passwordRef.current.value;
         // implement a call to cloud function with cloudant
         try {
-            const response = await axios.post(`${process.env.AUTH_SERVICE_URL}/login`, { "email": emailInput, "password": passwordInput });
+            const response = await axios.post(`${import.meta.env.VITE_AUTH_SERVICE_URL}/login`, { "email": emailInput, "password": passwordInput });
             console.log(response);
+            if (response.data.body) {
+                dispatch(authenticateUser(true));
+            }
         } catch (e) {
             console.log(e);
         }
