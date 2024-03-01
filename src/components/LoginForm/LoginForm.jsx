@@ -1,60 +1,109 @@
-import { useRef, useState } from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { authenticateUser } from '../../reducers/userSlice';
+import { useRef, useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import AuthHoc from '../AuthHoc/AuthHoc';
+import Notification from '../common/Notification';
 
-function RegistrationForm() {
-    const dispatch = useDispatch();
+function LoginForm() {
+  const [message, setMessage] = useState('');
+  const authenticated = useSelector((state) => state.user.authenticated);
+  const error = useSelector((state) => state.user.error);
+  const isLoading = useSelector((state) => state.user.isLoading);
+  const registration = useSelector((state) => state.registration.registration);
 
-    const [error, setError] = useState('');
-    const emailRef = useRef('');
-    const passwordRef = useRef('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const handleChange = (event) => {
-        const value = event.target.value;
-        const name = event.target.name;
-        console.log(value);
-        console.log(name);
-    };
+  const usernameRef = useRef('');
+  const passwordRef = useRef('');
 
-    const handleOnSubmit = async () => {
-        const emailInput = emailRef.current.value;
-        const passwordInput = passwordRef.current.value;
-        // implement a call to cloud function with cloudant
-        try {
-            const response = await axios.post(`${import.meta.env.VITE_AUTH_SERVICE_URL}/login`, { "email": emailInput, "password": passwordInput });
-            console.log(response);
-            if (response.data.body) {
-                dispatch(authenticateUser(true));
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    };
+  useEffect(() => {
+    // Redirect if user is authenticated
+    if (authenticated) {
+      navigate('/dashboard'); // Redirect to dashboard or any desired route
+    }
+  }, [authenticated, navigate]);
 
-    return (
-        <>
-            <div className="form_input">
-                <label for="email">Email</label>
-                <input
-                    name="email"
-                    value={emailRef.current.value}
-                    onChange={handleChange}
-                    ref={emailRef}
-                />
-            </div>
-            <div className="form_input">
-                <label for="password">Password</label>
-                <input
-                    name="password"
-                    value={passwordRef.current.value}
-                    onChange={handleChange}
-                    ref={passwordRef}
-                />
-            </div>
-            <button onClick={handleOnSubmit}>Login</button>
-        </>
-    );
+  useEffect(() => {
+    // Redirect if user is authenticated
+    if (registration) {
+      const { status, emails } = registration;
+      if (status === 'PENDING')
+        setMessage(
+          `Please check your email ${emails[0].value} to activate your account before logging in.`
+        );
+    }
+  }, [registration]);
+
+  const validateEntry = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    console.log(value);
+    console.log(name);
+  };
+
+  const handleOnSubmit = async () => {
+    const usernameInput = usernameRef.current.value;
+    const passwordInput = passwordRef.current.value;
+    dispatch({
+      type: 'USER_LOGIN_REQUESTED',
+      payload: { username: usernameInput, password: passwordInput },
+    });
+  };
+
+  return (
+    <AuthHoc
+      page='login'
+      title="Sign in to platform"
+      backButtonOnClick={() => navigate('/registration')}
+      backButtonText="Go to Registration"
+    >
+      <div className="form_input">
+        <label htmlFor="username">User name</label>
+        <input
+          disabled={isLoading}
+          name="username"
+          type="text"
+          onChange={validateEntry}
+          ref={usernameRef}
+          className="w-full border border-gray-300 mb-4 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+        />
+      </div>
+      <div className="form_input">
+        <label htmlFor="password">Password</label>
+        <input
+          disabled={isLoading}
+          name="password"
+          type="password"
+          onChange={validateEntry}
+          ref={passwordRef}
+          className="w-full border border-gray-300 mb-4 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+        />
+      </div>
+      <div className="flex gap-2">
+        <button
+          disabled={isLoading}
+          type="button"
+          onClick={handleOnSubmit}
+          className="basis-1/2 mt-4 text-center bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-300 transition-color duration-200 delay-100"
+        >
+          Login
+        </button>
+      </div>
+      {error && (
+        <Notification
+          text={error}
+          className="bg-red-400 text-white rounded p-1 my-2 border"
+        />
+      )}
+      {message && (
+        <Notification
+          text={message}
+          className="text-white rounded p-1 my-2 border bg-sky-600"
+        />
+      )}
+    </AuthHoc>
+  );
 }
 
-export default RegistrationForm;
+export default LoginForm;
