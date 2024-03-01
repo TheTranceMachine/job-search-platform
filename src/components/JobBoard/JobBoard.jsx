@@ -1,9 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import JobDetails from './JobDetails';
 
-function JobBoard() {
+const JobBoard = () => {
   const [jobPosts, setJobPosts] = useState([]);
   const [jobPostsPaginated, setJobPostsPaginated] = useState([]);
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+
+  const jobs = useSelector((state) => state.jobsAll.jobs);
+  const error = useSelector((state) => state.jobsAll.error);
+  const isLoading = useSelector((state) => state.jobsAll.isLoading);
+
+  const jobsDetails = useSelector((state) => state.jobsDetails.jobsDetails);
+  const jobsDetailsError = useSelector((state) => state.jobsDetails.error);
+  const jobsDetailsIsLoading = useSelector(
+    (state) => state.jobsDetails.isLoading
+  );
 
   // Define the number of items to display per page
   const pageSize = 6;
@@ -11,22 +24,11 @@ function JobBoard() {
   const totalPages = Math.ceil(jobPosts.length / pageSize);
 
   const jobDetails = async (id) => {
-    const response = await fetch(
-      `https://hacker-news.firebaseio.com/v0/item/${id}.json`
-    );
-    const details = await response.json();
-    return details;
-  };
-
-  function unixToDateTime(unixTimestamp) {
-    const d = new Date(unixTimestamp * 1000);
-    const date = d.toLocaleDateString();
-    const time = d.toTimeString().split(' ')[0];
-    return `${date}, ${time}`;
+    return id;
   };
 
   // Create a function to display a paginated list of items
-  async function paginate(items, pageNumber) {
+  const paginate = async (items, pageNumber) => {
     // Start at the beginning of the current page
     const startIndex = (pageNumber - 1) * pageSize;
     // End at the end of the current page
@@ -36,70 +38,45 @@ function JobBoard() {
     const paginatedItems = items.slice(startIndex, endIndex);
 
     // Get details for the paginated IDs
-    let jobDetailsResults = [];
     for (const id of paginatedItems) {
-      const details = await jobDetails(id);
-      jobDetailsResults.push(details);
+      dispatch({ type: 'JOB_BY_ID_REQUESTED', payload: { id } });
     }
-    // Add to the current list of paginated pages
-    const newItems = jobPostsPaginated.concat(jobDetailsResults);
-
-    // Return the paginated items
-    setJobPostsPaginated(newItems);
   };
 
-  const handleOnClick = () => {
+  const handleLoadMore = () => {
     setPage((prev) => prev + 1);
     paginate(jobPosts, page + 1);
   };
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        'https://hacker-news.firebaseio.com/v0/jobstories.json'
-      );
-      const postings = await response.json();
-      setJobPosts(postings);
-    };
-    if (!jobPosts.length) fetchData();
-  }, [jobPosts]);
+    if (jobs.length) {
+      setJobPosts(jobs);
+    }
+  }, [jobs]);
 
   useEffect(() => {
-    if (!jobPostsPaginated.length && jobPosts.length !== 0) {
+    if (!jobPostsPaginated.length && jobPosts.length) {
       paginate(jobPosts, 1);
     }
   }, [jobPosts, jobPostsPaginated]);
 
+  useEffect(() => {
+    setTimeout(() => setJobPostsPaginated(jobsDetails), 5000);
+  }, [jobDetails]);
+
   return (
-    <div>
+    <div className="w-full overflow-y-scroll">
       <h1 className="main_title">Hacker News Jobs Board</h1>
-      {jobPostsPaginated.length !== 0 ? (
-        <>
-          {jobPostsPaginated.map(({ id, title, by, time, url }) => (
-            <div className="post" key={id}>
-              {url !== null ? (
-                <a href={url} target="_blank">
-                  {title}
-                </a>
-              ) : (
-                <div>{title}</div>
-              )}
-              <div>
-                By {by} - {unixToDateTime(time)}
-              </div>
-            </div>
-          ))}
-        </>
-      ) : (
-        <div>Nothing to display</div>
-      )}
+      {jobPostsPaginated.map((details) => (
+        <JobDetails details={details} />
+      ))}
       {page < totalPages && (
-        <button onClick={handleOnClick} className="loadMoreButton">
+        <button onClick={handleLoadMore} className="loadMoreButton">
           Load More jobs
         </button>
       )}
     </div>
   );
-}
+};
 
 export default JobBoard;
