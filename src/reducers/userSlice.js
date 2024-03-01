@@ -3,25 +3,36 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        user: {},
-        authenticated: false
+        user: null,
+        isLoading: false,
+        authenticated: false,
+        error: ''
     },
     reducers: {
-        saveUser: (state, action) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes.
-            // Also, no return statement is required from these functions.
-            state.user = action.payload
+        userLoginRequested: (state) => {
+            state.user = null;
+            state.isLoading = true;
+            state.authenticated = false;
         },
-        authenticateUser: (state, action) => {
-            state.authenticated = action.payload
-        }
+        userLoginSuccess: (state, action) => {
+            state.user = action.payload;
+            state.isLoading = false;
+            state.authenticated = true;
+        },
+        userLoginFailed: (state, action) => {
+            state.user = null;
+            state.isLoading = false;
+            state.authenticated = false;
+            state.error = action.payload;
+        },
+        userLogoutSuccess: (state) => {
+            state.user = null;
+            state.authenticated = false;
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { saveUser, authenticateUser } = userSlice.actions
+export const { userLoginRequested, userLoginSuccess, userLoginFailed, userLogoutSuccess } = userSlice.actions
 
 export default userSlice.reducer
