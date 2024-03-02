@@ -5,10 +5,11 @@ import { savedJobsRequested, savedJobsFailed, savedJobsSuccess } from "../reduce
 function* getAllSavedJobs(action) {
     yield put(savedJobsRequested());
     const jobs = yield call(fetchAllSavedJobsApi, action.payload);
+    console.log(jobs);
     if (jobs.error) {
         yield put(savedJobsFailed(jobs.error));
     } else {
-        yield put(savedJobsSuccess(jobs.body));
+        yield put(savedJobsSuccess(jobs.data.body));
     }
 }
 

@@ -14,7 +14,7 @@ import './tailwind-index.css';
 import { Theme } from '@radix-ui/themes';
 
 const JobBoard = lazy(() => import('./components/JobBoard/JobBoard'));
-const SavedJobs = lazy(() => import('./components/JobBoard/SavedJobs'));
+const SavedJobs = lazy(() => import('./components/SavedJobs/SavedJobs'));
 
 const fallbackRender = ({ error }) => <ErrorFallback error={error} />;
 

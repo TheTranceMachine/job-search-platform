@@ -27,7 +27,10 @@ const JobDetails = ({ details }) => {
         <Title title={title} url={url} />
       </td>
       <td className="border border-slate-800 p-2 text-sm">
-        By {by} - {unixToDateTime(time)}
+        {by}
+      </td>
+      <td className="border border-slate-800 p-2 text-sm">
+        {unixToDateTime(time)}
       </td>
       <td className="border border-slate-800 p-2 text-sm">
         <div className="flex justify-center">

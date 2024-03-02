@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import JobDetails from './JobDetails';
+import JobDetails from '../JobDetails/JobDetails';
 
 const JobBoard = () => {
   const [jobsPaginated, setJobsPaginated] = useState([]);
@@ -76,6 +76,7 @@ const JobBoard = () => {
             <tr>
               <th className="bg-[#12172e] p-2 text-sm text-white">Title</th>
               <th className="bg-[#12172e] p-2 text-sm text-white">Author</th>
+              <th className="bg-[#12172e] p-2 text-sm text-white">Date & Time</th>
               <th className="bg-[#12172e] p-2 text-sm  text-white">Actions</th>
             </tr>
           </thead>

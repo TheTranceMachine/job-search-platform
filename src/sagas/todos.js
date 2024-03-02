@@ -5,7 +5,6 @@ import { todosAllRequested, todosAllFailed, todosAllSuccess } from "../reducers/
 function* gatAllToDos() {
     yield put(todosAllRequested());
     const todos = yield call(fetchAllToDos);
-    console.log('SAGA', todos);
     if (todos.error) {
         yield put(todosAllFailed(todos.error.message));
     } else {
