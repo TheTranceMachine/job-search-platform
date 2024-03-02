@@ -20,10 +20,28 @@ export const savedJobsSlice = createSlice({
             state.jobs = action.payload;
             state.isLoading = false;
         },
+        saveJobRequested: (state) => {
+            state.isLoading = true;
+        },
+        saveJobFailed: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
+        saveJobSuccess: (state, action) => {
+            state.jobs = [...state.jobs, action.payload];
+            state.isLoading = false;
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { savedJobsRequested, savedJobsFailed, savedJobsSuccess } = savedJobsSlice.actions
+export const {
+    savedJobsRequested,
+    savedJobsFailed,
+    savedJobsSuccess,
+    saveJobRequested,
+    saveJobFailed,
+    saveJobSuccess
+} = savedJobsSlice.actions
 
 export default savedJobsSlice.reducer

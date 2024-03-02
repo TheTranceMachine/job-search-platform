@@ -1,7 +1,6 @@
 import { StarIcon } from '@radix-ui/react-icons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { unixToDateTime } from '../../utils/utils';
-import { saveJobApi } from '../../api/api';
 
 const Title = ({ url, title }) => (
   <a href={url ? url : ''} target="_blank">
@@ -12,13 +11,14 @@ const Title = ({ url, title }) => (
 const JobDetails = ({ details }) => {
   const { id, title, by, time, url } = details;
 
+  const dispatch = useDispatch();
+
   const { preferred_username: username } = useSelector(
     (state) => state.user.user
   );
 
   const handleStarJobAction = async (job) => {
-    const result = await saveJobApi({ ...job, username });
-    console.log(result);
+    dispatch({ type: 'SAVE_JOB_REQUESTED', payload: { ...job, username } });
   };
 
   return (
@@ -33,8 +33,8 @@ const JobDetails = ({ details }) => {
         {unixToDateTime(time)}
       </td>
       <td className="border border-slate-800 p-2 text-sm">
-        <div className="flex justify-center">
-          <StarIcon onClick={handleStarJobAction(details)} />
+        <div className="flex justify-center" onClick={() => handleStarJobAction(details)}>
+          <StarIcon />
         </div>
       </td>
     </tr>

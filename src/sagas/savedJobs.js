@@ -1,6 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { fetchAllSavedJobsApi } from '../api/api';
-import { savedJobsRequested, savedJobsFailed, savedJobsSuccess } from "../reducers/savedJobsSlice";
+import { fetchAllSavedJobsApi, saveJobApi } from '../api/api';
+import {
+    savedJobsRequested,
+    savedJobsFailed,
+    savedJobsSuccess,
+    saveJobRequested,
+    saveJobFailed,
+    saveJobSuccess
+} from "../reducers/savedJobsSlice";
 
 function* getAllSavedJobs(action) {
     yield put(savedJobsRequested());
@@ -17,4 +24,19 @@ function* savedJobsSaga() {
     yield takeLatest('SAVED_JOBS_REQUESTED', getAllSavedJobs)
 }
 
-export { savedJobsSaga }
+function* saveJob(action) {
+    yield put(saveJobRequested());
+    const job = yield call(saveJobApi, action.payload);
+    console.log(job);
+    if (job.error) {
+        yield put(saveJobFailed(job.error));
+    } else {
+        yield put(saveJobSuccess(job.data.body));
+    }
+}
+
+function* saveJobSaga() {
+    yield takeLatest('SAVE_JOB_REQUESTED', saveJob)
+}
+
+export { savedJobsSaga, saveJobSaga }

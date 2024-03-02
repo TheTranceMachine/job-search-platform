@@ -27,9 +27,14 @@ const SavedJobs = () => {
             </tr>
           </thead>
           <tbody>
-            {jobs.length && jobs.map((details) => (
+            {jobs.length ? jobs.map((details) => (
               <JobDetails details={details} />
-            ))}
+            ))
+          : <tr className='text-white text-lg p-2'>
+              <td>
+                Nothing saved at the moment!
+              </td>
+            </tr>}
           </tbody>
         </table>
       </div>
