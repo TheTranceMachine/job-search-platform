@@ -56,7 +56,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 path="/jobs"
                 element={
                   <PrivateRoute>
-                    <SavedJobs />
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <SavedJobs />
+                    </Suspense>
                   </PrivateRoute>
                 }
               />

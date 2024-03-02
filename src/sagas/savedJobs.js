@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { fetchAllSavedJobs } from '../api/api';
-import { savedJobsRequested, savedJobsFailed, savedJobsSuccess } from "../reducers/savedJobs";
+import { fetchAllSavedJobsApi } from '../api/api';
+import { savedJobsRequested, savedJobsFailed, savedJobsSuccess } from "../reducers/savedJobsSlice";
 
-function* getAllSavedJobs() {
+function* getAllSavedJobs(action) {
     yield put(savedJobsRequested());
-    const jobs = yield call(fetchAllSavedJobs);
+    const jobs = yield call(fetchAllSavedJobsApi, action.payload);
     if (jobs.error) {
         yield put(savedJobsFailed(jobs.error));
     } else {

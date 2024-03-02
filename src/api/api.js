@@ -31,7 +31,9 @@ const loginUser = (payload) => post('/login', payload);
 
 const fetchAllToDos = () => get('/todos');
 
-const fetchAllSavedJobs = () => get('/jobs');
+const fetchAllSavedJobsApi = (payload) => post('/jobs', payload);
+
+const saveJobApi = (payload) => post('/job', payload)
 
 const fetchHackerNewsJob = (payload) => axios.get(`https://hacker-news.firebaseio.com/v0/item/${payload.id}.json`);
 
@@ -40,4 +42,15 @@ const fetchAllHackerNewsJobs = () => axios.get('https://hacker-news.firebaseio.c
 const logoutUser = () => get('/logout');
 
 
-export { registerUser, registrationEmailResend, loginUser, forgottenPasswordEmail, fetchAllToDos, fetchHackerNewsJob, fetchAllHackerNewsJobs, fetchAllSavedJobs, logoutUser }
+export {
+    registerUser,
+    registrationEmailResend,
+    loginUser,
+    forgottenPasswordEmail,
+    fetchAllToDos,
+    fetchHackerNewsJob,
+    fetchAllHackerNewsJobs,
+    fetchAllSavedJobsApi,
+    saveJobApi,
+    logoutUser
+}

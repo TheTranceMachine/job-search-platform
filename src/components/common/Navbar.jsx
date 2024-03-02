@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className="w-full border-b flex justify-end">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <div className="flex items-center cursor-pointer hover:bg-slate-200 py-1 px-2 rounded-tr-lg">
+            <div className="flex items-center cursor-pointer hover:bg-slate-200 py-1 px-4 rounded-tr-lg">
               <div className="rounded-full bg-slate-600 text-white p-1.5 m-1">
                 GS
               </div>

@@ -19,7 +19,7 @@ export const savedJobsSlice = createSlice({
         savedJobsSuccess: (state, action) => {
             state.jobs = action.payload;
             state.isLoading = false;
-        }
+        },
     },
 })
 

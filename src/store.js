@@ -9,6 +9,7 @@ import registrationReducer from './reducers/userRegistrationSlice';
 import jobsDetails from './reducers/jobsDetails';
 import jobsAllReducer from './reducers/jobsAllSlice';
 import todosReducer from './reducers/todoSlice';
+import savedJobsReducer from './reducers/savedJobsSlice';
 
 import rootSaga from './sagas/index';
 
@@ -17,12 +18,14 @@ const rootReducer = combineReducers({
     registration: registrationReducer,
     todos: todosReducer,
     jobsDetails: jobsDetails,
-    jobsAll: jobsAllReducer
+    jobsAll: jobsAllReducer,
+    savedJobs: savedJobsReducer,
 });
 
 // Configure persist reducer
 const persistConfig = {
     key: 'root',
+    blacklist: ['todos', 'jobsDetails', 'jobsAll', 'savedJobs'],
     storage,
 };
 
