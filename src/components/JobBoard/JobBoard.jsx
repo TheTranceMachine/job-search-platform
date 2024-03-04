@@ -6,7 +6,7 @@ const JobBoard = () => {
   const [jobsPaginated, setJobsPaginated] = useState([]);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-
+  
   const jobs = useSelector((state) => state.jobsAll.jobs);
   const error = useSelector((state) => state.jobsAll.error);
   const isLoading = useSelector((state) => state.jobsAll.isLoading);

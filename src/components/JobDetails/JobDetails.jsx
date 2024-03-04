@@ -1,4 +1,4 @@
-import { StarIcon } from '@radix-ui/react-icons';
+import { StarFilledIcon } from '@radix-ui/react-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { unixToDateTime } from '../../utils/utils';
 
@@ -33,8 +33,8 @@ const JobDetails = ({ details }) => {
         {unixToDateTime(time)}
       </td>
       <td className="border border-slate-800 p-2 text-sm">
-        <div className="flex justify-center" onClick={() => handleStarJobAction(details)}>
-          <StarIcon />
+        <div className="flex justify-center cursor-pointer" onClick={() => handleStarJobAction(details)}>
+          <StarFilledIcon />
         </div>
       </td>
     </tr>
