@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 body {
   background: rgb(72,201,191);
@@ -12,4 +12,10 @@ body {
 opacity: 1;
 background-image: radial-gradient(#050f29 0.25px, #12172e 0.25px);
 background-size: 2px 2px;
+}
+
+.great-vibes-regular-font {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-style: normal;
 }

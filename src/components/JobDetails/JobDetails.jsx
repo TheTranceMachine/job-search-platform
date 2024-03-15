@@ -26,14 +26,15 @@ const JobDetails = ({ details }) => {
       <td className="border border-slate-800 p-2 text-sm">
         <Title title={title} url={url} />
       </td>
-      <td className="border border-slate-800 p-2 text-sm">
-        {by}
-      </td>
+      <td className="border border-slate-800 p-2 text-sm">{by}</td>
       <td className="border border-slate-800 p-2 text-sm">
         {unixToDateTime(time)}
       </td>
       <td className="border border-slate-800 p-2 text-sm">
-        <div className="flex justify-center cursor-pointer" onClick={() => handleStarJobAction(details)}>
+        <div
+          className="flex justify-center cursor-pointer"
+          onClick={() => handleStarJobAction(details)}
+        >
           <StarFilledIcon />
         </div>
       </td>

@@ -15,30 +15,35 @@ const SavedJobs = () => {
     dispatch({ type: 'SAVED_JOBS_REQUESTED', payload: { username } });
   }, []);
 
-  return (<div className="overflow-y-scroll w-full">
-<div className="m-4 border-[#12172e] border bg-[#12172e] rounded-md py-1 shadow">
-        <table class="table-auto w-full shadow border-t border-slate-800">
+  return (
+    <div className="overflow-y-scroll w-full">
+      <div className="m-4 border-[#12172e] border bg-[#12172e] rounded-md py-1 shadow">
+        <table className="table-auto w-full shadow border-t border-slate-800">
           <thead>
             <tr>
               <th className="bg-[#12172e] p-2 text-sm text-white">Title</th>
               <th className="bg-[#12172e] p-2 text-sm text-white">Author</th>
-              <th className="bg-[#12172e] p-2 text-sm text-white">Date & Time</th>
+              <th className="bg-[#12172e] p-2 text-sm text-white">
+                Date & Time
+              </th>
               <th className="bg-[#12172e] p-2 text-sm  text-white">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {jobs.length ? jobs.map((details) => (
-              <JobDetails details={details} />
-            ))
-          : <tr className='text-white text-lg p-2'>
-              <td>
-                Nothing saved at the moment!
-              </td>
-            </tr>}
+            {jobs.length ? (
+              jobs.map((details) => (
+                <JobDetails details={details} key={details.id} />
+              ))
+            ) : (
+              <tr className="text-white text-lg p-2">
+                <td>Nothing saved at the moment!</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
-  </div>);
+    </div>
+  );
 };
 
 export default SavedJobs;

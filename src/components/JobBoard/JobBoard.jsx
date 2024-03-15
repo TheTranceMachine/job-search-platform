@@ -6,7 +6,7 @@ const JobBoard = () => {
   const [jobsPaginated, setJobsPaginated] = useState([]);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  
+
   const jobs = useSelector((state) => state.jobsAll.jobs);
   const error = useSelector((state) => state.jobsAll.error);
   const isLoading = useSelector((state) => state.jobsAll.isLoading);
@@ -76,13 +76,15 @@ const JobBoard = () => {
             <tr>
               <th className="bg-[#12172e] p-2 text-sm text-white">Title</th>
               <th className="bg-[#12172e] p-2 text-sm text-white">Author</th>
-              <th className="bg-[#12172e] p-2 text-sm text-white">Date & Time</th>
+              <th className="bg-[#12172e] p-2 text-sm text-white">
+                Date & Time
+              </th>
               <th className="bg-[#12172e] p-2 text-sm  text-white">Actions</th>
             </tr>
           </thead>
           <tbody>
             {jobsPaginated.map((details) => (
-              <JobDetails details={details} />
+              <JobDetails details={details} key={details.id} />
             ))}
           </tbody>
         </table>

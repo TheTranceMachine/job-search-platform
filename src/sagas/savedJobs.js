@@ -12,7 +12,6 @@ import {
 function* getAllSavedJobs(action) {
     yield put(savedJobsRequested());
     const jobs = yield call(fetchAllSavedJobsApi, action.payload);
-    console.log(jobs);
     if (jobs.error) {
         yield put(savedJobsFailed(jobs.error));
     } else {

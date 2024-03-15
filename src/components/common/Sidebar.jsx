@@ -5,7 +5,9 @@ const Sidebar = () => {
   return (
     <nav className="flex-none w-60 rounded-l-lg sidebar">
       <div className="h-14 flex justify-center">
-        <span className="self-center text-white text-xl">Welcome Greg!</span>
+        <span className="self-center text-white text-3xl great-vibes-regular-font">
+          FindWork
+        </span>
       </div>
       <ul className="flex flex-col text-white border-t border-gray-700">
         <li className="hover:bg-slate-900 py-2 px-3 text-sm">
