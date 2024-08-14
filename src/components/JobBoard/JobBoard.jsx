@@ -67,19 +67,21 @@ const JobBoard = () => {
 
   return (
     <div className="overflow-y-scroll w-full">
-      {/* <div className="mx-6 rounded-t-md translate-y-[1.3rem] text-2xl bg-orange-500 px-4 py-2 text-[#12172e] z-10">
+      {/* <div className="mx-6 rounded-t-md translate-y-[1.3rem] text-2xl bg-orange-500 px-4 py-2 text-fw-blue-900 z-10">
         Hacker News Jobs Board
       </div> */}
-      <div className="m-4 border-[#12172e] border bg-[#12172e] rounded-md py-1 shadow">
+      <div className="m-4 border-fw-blue-900 border bg-fw-blue-900 rounded-md py-1 shadow">
         <table class="table-auto w-full shadow border-t border-slate-800">
           <thead>
             <tr>
-              <th className="bg-[#12172e] p-2 text-sm text-white">Title</th>
-              <th className="bg-[#12172e] p-2 text-sm text-white">Author</th>
-              <th className="bg-[#12172e] p-2 text-sm text-white">
+              <th className="bg-fw-blue-900 p-2 text-sm text-white">Title</th>
+              <th className="bg-fw-blue-900 p-2 text-sm text-white">Author</th>
+              <th className="bg-fw-blue-900 p-2 text-sm text-white">
                 Date & Time
               </th>
-              <th className="bg-[#12172e] p-2 text-sm  text-white">Actions</th>
+              <th className="bg-fw-blue-900 p-2 text-sm  text-white">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -93,7 +95,7 @@ const JobBoard = () => {
         <div className="flex gap-2 justify-end items-start -translate-y-[1.4rem] mr-6">
           <button
             onClick={handleLoadMore}
-            className="text-[#12172e] px-3 py-2 rounded-b-md shadow bg-orange-500 border border-t-orange-600 border-r-orange-400 border-l-orange-400 border-b-orange-200"
+            className="text-fw-blue-900 px-3 py-2 rounded-b-md shadow bg-orange-500 border border-t-orange-600 border-r-orange-400 border-l-orange-400 border-b-orange-200"
           >
             Load More jobs
           </button>

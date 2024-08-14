@@ -1080,7 +1080,7 @@ select {
   border-top-width: 2px;
 }
 
-.border-\[\#12172e\] {
+.border-fw-blue-900 {
   --tw-border-opacity: 1;
   border-color: rgb(18 23 46 / var(--tw-border-opacity));
 }
@@ -1114,6 +1114,16 @@ select {
   border-color: rgb(245 245 244 / var(--tw-border-opacity));
 }
 
+.border-fw-blue-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(60 77 151 / var(--tw-border-opacity));
+}
+
+.border-fw-blue-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 90 177 / var(--tw-border-opacity));
+}
+
 .border-b-orange-200 {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(254 215 170 / var(--tw-border-opacity));
@@ -1134,14 +1144,14 @@ select {
   border-top-color: rgb(234 88 12 / var(--tw-border-opacity));
 }
 
-.bg-\[\#12172e\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(18 23 46 / var(--tw-bg-opacity));
-}
-
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+
+.bg-fw-blue-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(18 23 46 / var(--tw-bg-opacity));
 }
 
 .bg-gray-50 {
@@ -1201,6 +1211,21 @@ select {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-fw-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(102 130 255 / var(--tw-bg-opacity));
+}
+
+.bg-fw-blue-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(81 103 203 / var(--tw-bg-opacity));
+}
+
+.bg-fw-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(92 117 229 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -1362,14 +1387,14 @@ select {
   line-height: 1rem;
 }
 
-.text-\[\#12172e\] {
-  --tw-text-opacity: 1;
-  color: rgb(18 23 46 / var(--tw-text-opacity));
-}
-
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-fw-blue-900 {
+  --tw-text-opacity: 1;
+  color: rgb(18 23 46 / var(--tw-text-opacity));
 }
 
 .text-gray-600 {
@@ -1537,6 +1562,16 @@ body {
 .hover\:bg-slate-900:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-fw-blue-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(60 77 151 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-fw-blue-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(102 130 255 / var(--tw-bg-opacity));
 }
 
 .hover\:shadow-md:hover {

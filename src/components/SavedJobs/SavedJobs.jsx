@@ -17,16 +17,18 @@ const SavedJobs = () => {
 
   return (
     <div className="overflow-y-scroll w-full">
-      <div className="m-4 border-[#12172e] border bg-[#12172e] rounded-md py-1 shadow">
+      <div className="m-4 border-fw-blue-900 border bg-fw-blue-900 rounded-md py-1 shadow">
         <table className="table-auto w-full shadow border-t border-slate-800">
           <thead>
             <tr>
-              <th className="bg-[#12172e] p-2 text-sm text-white">Title</th>
-              <th className="bg-[#12172e] p-2 text-sm text-white">Author</th>
-              <th className="bg-[#12172e] p-2 text-sm text-white">
+              <th className="bg-fw-blue-900 p-2 text-sm text-white">Title</th>
+              <th className="bg-fw-blue-900 p-2 text-sm text-white">Author</th>
+              <th className="bg-fw-blue-900 p-2 text-sm text-white">
                 Date & Time
               </th>
-              <th className="bg-[#12172e] p-2 text-sm  text-white">Actions</th>
+              <th className="bg-fw-blue-900 p-2 text-sm  text-white">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>

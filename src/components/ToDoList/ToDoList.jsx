@@ -9,9 +9,6 @@ function ToDoList() {
   const errors = useSelector((state) => state.todos.todos);
   const allToDosLoading = useSelector((state) => state.todos.todos);
 
-  console.log(allToDos);
-  console.log(allToDosLoading);
-
   const titleRef = useRef('');
   const dispatch = useDispatch();
 
@@ -37,11 +34,16 @@ function ToDoList() {
   return (
     <>
       <div>
-        <input type="text" placeholder="Add your task" ref={titleRef} />
+        <input
+          type="text"
+          placeholder="Add your task"
+          className="w-full"
+          ref={titleRef}
+        />
         <div className="my-2">
           <button
             onClick={addToDo}
-            className="bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded p-2 w-full text-white"
+            className="bg-fw-blue-200 hover:bg-fw-blue-100 shadow-lg shadow-indigo-500/50 rounded p-2 w-full text-white"
           >
             Submit
           </button>

@@ -22,7 +22,7 @@ const JobDetails = ({ details }) => {
   };
 
   return (
-    <tr key={id} className="bg-[#12172e] text-white">
+    <tr key={id} className="bg-fw-blue-900 text-white">
       <td className="border border-slate-800 p-2 text-sm">
         <Title title={title} url={url} />
       </td>
