@@ -30,7 +30,7 @@ const SavedJobs = () => {
             </tr>
           </thead>
           <tbody>
-            {jobs.length ? (
+            {jobs && jobs.length ? (
               jobs.map((details) => (
                 <JobDetails details={details} key={details.id} />
               ))

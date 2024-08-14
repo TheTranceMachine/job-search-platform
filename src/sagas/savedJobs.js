@@ -26,7 +26,7 @@ function* savedJobsSaga() {
 function* saveJob(action) {
     yield put(saveJobRequested());
     const job = yield call(saveJobApi, action.payload);
-    console.log(job);
+
     if (job.error) {
         yield put(saveJobFailed(job.error));
     } else {
