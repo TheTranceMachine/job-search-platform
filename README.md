@@ -1,8 +1,21 @@
-# React + Vite
+# Job Search Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Increase your chances of finding a tech job with a built-in hacker-news job search.
+- Save and manage your selected jobs with a Job Dashboard.
+- Use the integrated Chrome plugin to search and import jobs from across the web.
+- Remember the next steps in the job application thanks to a ToDo list.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies used in this repository:
+- vite
+- typescript
+- react
+- redux toolkit
+- radix-ui
+- tailwind CSS
+- axios
+- redux-saga
+- react-dom
+- react-router-dom
+- redux-persist
+- eslint
+- prettier
