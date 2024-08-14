@@ -1,4 +1,4 @@
-# Job Search Platform
+# Job Search Platform - FindWork
 
 - Increase your chances of finding a tech job with a built-in hacker-news job search.
 - Save and manage your selected jobs with a Job Dashboard.
